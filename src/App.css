@@ -1,3 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.gradientBg-orange {
+  background: linear-gradient(315deg, #ff99c4 0%, #ffd162 100%);
+}
+
+.btnPrimary {
+  @apply rounded-3xl text-black h-11 w-36 text-base;
+}
+
 /* .App {
   text-align: center;
 }
@@ -40,7 +53,3 @@
 button {
   font-size: calc(10px + 2vmin);
 } */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-body {
-  font-family: "Poppins", sans-serif;
-}
