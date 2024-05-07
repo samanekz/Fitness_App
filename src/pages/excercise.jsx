@@ -1,4 +1,5 @@
 import "../App.css";
+import Navbar from "../components/navbar";
 
 function excercise() {
   return (
@@ -14,6 +15,7 @@ function excercise() {
         <a href="#">zu leicht</a>
         <a href="#">zu leicht</a>
       </div>
+      <Navbar />
     </div>
   );
 }
