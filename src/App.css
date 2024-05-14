@@ -7,6 +7,20 @@ body {
   background: linear-gradient(315deg, #ff99c4 0%, #ffd162 100%);
 }
 
+.gradientBg-green {
+  background: linear-gradient(315deg, #f5ffa0 0%, #3ef3e8 100%);
+}
+
+.gradientBg-blue {
+  background: linear-gradient(
+    315deg,
+    #3a4ae4 0%,
+    #3b85e6 21.35%,
+    #3ee4e8 73.44%,
+    #3ef3e8 92.71%
+  );
+}
+
 .btnPrimary {
   @apply rounded-3xl text-black h-11 w-36 text-base;
 }

@@ -1,50 +1,66 @@
-// import { useLocation, useParams } from "react-router-dom";
+import { useQuery, gql } from "@apollo/client";
+
+import "../App.css";
 import Navbar from "../components/navbar";
-import { NavLink as Link } from "react-router-dom";
+
+const GET_PROGRAMS = gql`
+  query GetPrograms {
+    programs {
+      id
+      name
+      description
+      focus
+      duration
+      workoutsWithDay {
+        day
+        workout {
+          name
+        }
+      }
+    }
+  }
+`;
 
 // samane wie verwindet mit die pages;
-export default function programs() {
-  // const location = useLocation();
-  // const params = useParams();
-  // console.log("Params", location, params);
+function programs() {
+  const { loading, error, data } = useQuery(GET_PROGRAMS);
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
+
+  let lastIndex = -1;
+  function getColor() {
+    const colors = ["gradientBg-orange", "gradientBg-green", "gradientBg-blue"];
+    lastIndex = (lastIndex + 1) % colors.length;
+    return colors[lastIndex];
+  }
   return (
     <>
-      <Link
-        to="/programs"
-        className={({ isActive }) => (isActive ? "font-bold" : "font-normal")}
-      >
-        Programs
-      </Link>
-      <Link
-        to="/programs"
-        className={({ isActive }) =>
-          isActive ? "stroke-red-900" : "font-normal"
-        }
-      >
-        <svg
-          width="26"
-          height="25"
-          viewBox="0 0 26 25"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M11.8562 2.29347L2.47977 9.47202C1.98545 9.85046 1.69556 10.4375 1.69556 11.0601L1.69556 17.0178L1.69556 21.6372C1.69556 22.7418 2.59099 23.6372 3.69556 23.6372L7.43398 23.6372C8.53855 23.6372 9.43398 22.7418 9.43398 21.6372L9.43398 16.6504C9.43398 15.5458 10.3294 14.6504 11.434 14.6504L14.4023 14.6504C15.5069 14.6504 16.4023 15.5458 16.4023 16.6504L16.4023 21.6372C16.4023 22.7418 17.2978 23.6372 18.4023 23.6372L22.4485 23.6372C23.5531 23.6372 24.4485 22.7418 24.4485 21.6372L24.4485 11.0601C24.4485 10.4375 24.1586 9.85046 23.6643 9.47202L14.2878 2.29347C13.5704 1.74418 12.5737 1.74418 11.8562 2.29347Z"
-            // stroke="#3A4151"
-            stroke-width="2"
-          />
-        </svg>
-      </Link>
-      {/* <NavLink to="/">home</NavLink> */}
-      <br />
-      {/* <NavLink to="/programs">programs</NavLink> */}
-      <br />
-      <a href={`/program/1`}>program 1</a>
-      <br />
-      <a href={`/program/2`}>program 2</a>
-      <br />
-      <Navbar />
+      <div className="bg-fitness-dark h-lvh  text-white flex flex-col">
+        <h2 className="text-2xl font-bold my-14 mx-7">Browse</h2>
+        {data.programs.map((program) => (
+          <>
+            <main
+              className={` relative rounded-3xl pt-52 mx-7 my-3 text-center ${getColor()}`}
+            >
+              <a
+                // Samaneh what should i do that text in center for div
+                className="absolute inset-24 my-auto font-bold text-2xl mx-auto scroll-auto"
+                href={`/program/${program.id}`}
+                key={program.id}
+              >
+                {program.name}
+                <br />
+              </a>
+            </main>
+          </>
+        ))}
+        <div className="text-center absolute inset-x-0 bottom-0">
+          <Navbar />
+        </div>
+      </div>
     </>
   );
 }
+
+export default programs;
