@@ -6,7 +6,7 @@ Packet Manager: Yarn
 
 Css: TailwindCss
 
-API Platform: Appolo GraphQL
+API Platform: Apollo GraphQL
 
 Charts: chart.js
 
