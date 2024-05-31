@@ -24,7 +24,7 @@ const GET_PROGRAMS = gql`
 // samane wie verwindet mit die pages;
 function programs() {
   const { loading, error, data } = useQuery(GET_PROGRAMS);
-
+  console.log("program", useQuery(GET_PROGRAMS));
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
@@ -36,7 +36,7 @@ function programs() {
   }
   return (
     <>
-      <div className="bg-fitness-dark h-lvh  text-white flex flex-col">
+      <div className="bg-fitness-dark text-white flex flex-col">
         <h2 className="text-2xl font-bold my-14 mx-7">Browse</h2>
         {data.programs.map((program) => (
           <>
@@ -55,7 +55,7 @@ function programs() {
             </main>
           </>
         ))}
-        <div className="text-center absolute inset-x-0 bottom-0">
+        <div className="text-center fixed inset-x-0 bottom-0">
           <Navbar />
         </div>
       </div>
